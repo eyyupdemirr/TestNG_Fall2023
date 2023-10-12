@@ -31,5 +31,14 @@ public class AmazonPage {
   @FindBy(xpath = "//*[@*='Allow all cookies']")
   public WebElement cookiesKabulButonu;
 
+  @FindBy(xpath = "(//div[@class='a-section aok-relative s-image-square-aspect'])[1]")
+  public WebElement ilkUrunElementi;
+
+  @FindBy(xpath = "//span[@class='a-size-large product-title-word-break']")
+  public WebElement ilkUrunIsimElementi;
+
+
+
+
 
 }
