@@ -9,7 +9,7 @@ import utilities.Driver;
 
 public class C04_Assertions {
 
-    @Test
+    @Test(groups = { "regression"})
     public void test01(){
 
         // amazon anasayfaya gidelim
@@ -32,6 +32,7 @@ public class C04_Assertions {
 
         String expectedSonucIcerik = ConfigReader.getProperty("amazonAranacakKelime");
         String actualSonucYazisi = amazonPage.sonucYaziElementi.getText();
+
         Assert.assertTrue(actualSonucYazisi.contains(expectedSonucIcerik));
 
         // ilk urune tiklayalim

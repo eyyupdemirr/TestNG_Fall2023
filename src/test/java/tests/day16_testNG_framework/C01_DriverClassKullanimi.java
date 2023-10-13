@@ -10,7 +10,7 @@ import java.security.Key;
 
 public class C01_DriverClassKullanimi {
 
-    @Test
+    @Test(groups = {"smoke" })
     public void amazonTest(){
         // amazon'a gidelim
         Driver.getDriver().get("https://www.amazon.com");
@@ -24,7 +24,7 @@ public class C01_DriverClassKullanimi {
 
     }
 
-    @Test
+    @Test(groups = {"smoke",  "regression"})
     public void youtubeTest(){
         Driver.getDriver().get("https://www.youtube.com");
         Driver.closeDriver();
