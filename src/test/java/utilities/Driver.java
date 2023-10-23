@@ -3,47 +3,49 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
 public class Driver {
 
     /*
-  JUnit'de WebDriver objesi TestBase'den geliyordu
+     JUnit'de WebDriver objesi TestBase'den geliyordu
 
-  TestNG extends ile baglanma zorunlulugunu ortadan kaldirmak
-  ve testi yazanlara daha fazla kontrol imkani vermek icin
-  TestBase yerine Driver class'inda static 2 method ile
-  driver olusturma ve kapatma islemlerini yapmayi tercih etmistir
-  */
+     TestNG extends ile baglanma zorunlulugunu ortadan kaldirmak
+     ve testi yazanlara daha fazla kontrol imkani vermek icin
+     TestBase yerine Driver class'inda static 2 method ile
+     driver olusturma ve kapatma islemlerini yapmayi tercih etmistir
+     */
 
-    private Driver(){
+    private Driver() {
         // Bu constructor default constructor ile ayni islevi yapan parametresiz constructor'dir
         // buna erisimi kontrol edebilecegimiz icin bu constructor'i olusturduk
     }
 
-
-
     static WebDriver driver; // biz deger atamadigimiz icin Java default olarak null point eder
-    public static WebDriver getDriver(){
+
+    public static WebDriver getDriver() {
 
         String browser = ConfigReader.getProperty("browser");
 
-        if (driver == null){
+        if (driver == null) {
 
-            switch (browser){
+            switch (browser) {
 
-                case "safari" :
+                case "safari":
                     WebDriverManager.safaridriver().setup();
-                  //  driver= new SafariDriver();
+                    driver = new SafariDriver();
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                  //  driver= new FirefoxDriver();
+                    driver = new FirefoxDriver();
                     break;
-                case "edge" :
+                case "edge":
                     WebDriverManager.edgedriver().setup();
-                  //  driver = new EdgeDriver();
+                    driver = new EdgeDriver();
                     break;
                 default:
                     WebDriverManager.chromedriver().setup();
@@ -59,11 +61,10 @@ public class Driver {
         return driver;
     }
 
-
-    public static void closeDriver(){
-        if (driver != null){
+    public static void closeDriver() {
+        if (driver != null) {
             driver.close();
-            driver=null;
+            driver = null;
         }
     }
 
